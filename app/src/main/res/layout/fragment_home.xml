@@ -7,6 +7,7 @@
     tools:context=".ui.fragment.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -14,7 +15,7 @@
             android:id="@+id/toolbar_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#3F51B5"
+            android:background="#000000"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ToolbarTheme"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,50 +32,78 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <LinearLayout
             android:id="@+id/linearLayoutCompat"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25.dp"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_home">
 
-            <ImageView
-                android:id="@+id/iv_all_notes"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/filter_background"
-                android:padding="4dp"
-                android:src="@drawable/ic_filter" />
+            <TextView
+                android:id="@+id/p_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:layout_marginStart="16.dp"
+                android:background="@drawable/most_shape"
+                android:backgroundTint="#EFE5E5"
+                android:textSize="12sp"
+                android:text="All"
+                android:textColor="@color/black"/>
 
-            <ImageView
-                android:id="@+id/iv_get_high_notes"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/red_dot" />
+            <View
+                android:layout_width="8.dp"
+                android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/iv_get_medium_notes"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/blue_dot" />
+            <TextView
+                android:id="@+id/p_most"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/most_shape"
+                android:backgroundTint="#850505"
+                android:textSize="10sp"
+                android:text="Most Important"
+                android:textColor="@color/white"/>
 
-            <ImageView
-                android:id="@+id/iv_get_low_notes"
-                android:layout_width="25dp"
-                android:layout_gravity="center"
-                android:layout_height="25dp"
-                android:layout_marginStart="12dp"
-                android:background="@drawable/green_dot" />
+            <View
+                android:layout_width="8.dp"
+                android:layout_height="wrap_content"/>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <TextView
+                android:id="@+id/p_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/most_shape"
+                android:backgroundTint="#054B85"
+                android:textSize="10sp"
+                android:text="Medium Important"
+                android:textColor="@color/white"/>
+
+            <View
+                android:layout_width="8.dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/p_least"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/most_shape"
+                android:backgroundTint="#058305"
+                android:textSize="10sp"
+                android:text="Least Important"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_all_notes"
@@ -85,6 +114,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/item_notes"
+            tools:itemCount="5"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
 
 
@@ -93,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="26dp"
-            android:backgroundTint="#3F51B5"
+            android:backgroundTint="#E91E63"
             android:fontFamily="@font/custom_bold"
             android:text="Add Note"
             android:textColor="@color/white"

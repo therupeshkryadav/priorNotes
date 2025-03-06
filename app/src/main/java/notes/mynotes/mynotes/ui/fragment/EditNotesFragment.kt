@@ -77,41 +77,23 @@ class EditNotesFragment : Fragment() {
         when (data?.priority) {
             "1" -> {
                 priority = "1"
-                binding.pRed.setImageResource(R.drawable.ic_done)
-                binding.pBlue.setImageResource(0)
-                binding.pGreen.setImageResource(0)
             }
             "2" -> {
                 priority = "2"
-                binding.pBlue.setImageResource(R.drawable.ic_done)
-                binding.pRed.setImageResource(0)
-                binding.pGreen.setImageResource(0)
             }
             "3" -> {
                 priority = "3"
-                binding.pGreen.setImageResource(R.drawable.ic_done)
-                binding.pRed.setImageResource(0)
-                binding.pBlue.setImageResource(0)
             }
         }
 
-        binding.pRed.setOnClickListener {
+        binding.pMost.setOnClickListener {
             priority = "1"
-            binding.pRed.setImageResource(R.drawable.ic_done)
-            binding.pBlue.setImageResource(0)
-            binding.pGreen.setImageResource(0)
         }
-        binding.pBlue.setOnClickListener {
+        binding.pMedium.setOnClickListener {
             priority = "2"
-            binding.pBlue.setImageResource(R.drawable.ic_done)
-            binding.pRed.setImageResource(0)
-            binding.pGreen.setImageResource(0)
         }
-        binding.pGreen.setOnClickListener {
+        binding.pLeast.setOnClickListener {
             priority = "3"
-            binding.pGreen.setImageResource(R.drawable.ic_done)
-            binding.pRed.setImageResource(0)
-            binding.pBlue.setImageResource(0)
         }
 
         binding.btnEditSaveNotes.setOnClickListener {

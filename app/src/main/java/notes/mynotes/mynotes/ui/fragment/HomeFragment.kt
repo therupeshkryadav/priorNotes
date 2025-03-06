@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
         //toolbar setup
         toolBarSetUp()
 
-        val gridLayout = GridLayoutManager(requireContext(), 2)
+        val gridLayout = GridLayoutManager(requireContext(), 1)
         binding.rcvAllNotes.layoutManager = gridLayout
 
         viewModel.getAllNotes().observe(viewLifecycleOwner) { notesList ->
@@ -40,24 +40,24 @@ class HomeFragment : Fragment() {
                 .navigate(R.id.action_homeFragment_to_createNotesFragment)
         }
 
-        binding.ivGetHighNotes.setOnClickListener {
+        binding.pMost.setOnClickListener {
             viewModel.getHighNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), notesList)
             }
         }
 
-        binding.ivGetMediumNotes.setOnClickListener {
+        binding.pMedium.setOnClickListener {
             viewModel.getMediumNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), notesList)
             }
         }
-        binding.ivGetLowNotes.setOnClickListener {
+        binding.pLeast.setOnClickListener {
             viewModel.getLowNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), notesList)
             }
         }
 
-        binding.ivAllNotes.setOnClickListener {
+        binding.pAll.setOnClickListener {
             viewModel.getAllNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), notesList)
             }

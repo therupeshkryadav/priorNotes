@@ -1,9 +1,11 @@
 package notes.mynotes.mynotes.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.toColorInt
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import notes.mynotes.mynotes.R
@@ -34,13 +36,13 @@ class NotesAdapter(val context: Context, val list: List<Notes>) :
         }
         when (item.priority) {
             "1" -> {
-                holder.binding.priority.setBackgroundResource(R.drawable.red_dot)
+                holder.binding.priority.setBackgroundColor("#850505".toColorInt())
             }
             "2" -> {
-                holder.binding.priority.setBackgroundResource(R.drawable.blue_dot)
+                holder.binding.priority.setBackgroundColor("#054B85".toColorInt())
             }
             "3" -> {
-                holder.binding.priority.setBackgroundResource(R.drawable.green_dot)
+                holder.binding.priority.setBackgroundColor("#058305".toColorInt())
             }
         }
         holder.itemView.setOnClickListener {
