@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
                 val shareIntent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
                     putExtra(Intent.EXTRA_SUBJECT, "Check out this amazing app Prior Notes!")
-                    putExtra(Intent.EXTRA_TEXT, "Hey! Check out this awesome app Prior Notes: [https://drive.google.com/file/d/1I-vdj_Mw6qm4w9mj_FWWDehkOcwdFsYr/view?usp=sharing]")
+                    putExtra(Intent.EXTRA_TEXT, "Hey! Check out this awesome app Prior Notes: https://drive.google.com/file/d/1dEp6x6pf1SOwZ15ONV8hBl9-VbQS90FC/view?usp=sharing")
                 }
                 startActivity(Intent.createChooser(shareIntent, "Share via"))
                 return true
