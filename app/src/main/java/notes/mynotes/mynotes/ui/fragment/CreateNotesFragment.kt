@@ -1,11 +1,13 @@
 package notes.mynotes.mynotes.ui.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -19,70 +21,66 @@ import java.util.*
 
 class CreateNotesFragment : Fragment() {
     private lateinit var binding: FragmentCreateNotesBinding
-    var priority: String = "1"
-    val viewModel: NotesViewModel by viewModels()
+    private var priority: String = "1"
+    private val viewModel: NotesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentCreateNotesBinding.inflate(layoutInflater)
+    ): View {
+        binding = FragmentCreateNotesBinding.inflate(inflater, container, false)
 
-        //toolbar setup
         toolBarSetUp()
-
-        binding.pMost.setOnClickListener {
-            priority = "1"
-        }
-        binding.pMedium.setOnClickListener {
-            priority = "2"
-        }
-        binding.pLeast.setOnClickListener {
-            priority = "3"
-        }
-
-        binding.btnSaveNotes.setOnClickListener {
-            createNotes(it)
-        }
+        setupPrioritySelection()
+        binding.btnSaveNotes.setOnClickListener { createNotes() }
 
         return binding.root
     }
 
-    private fun createNotes(it: View?) {
+    private fun setupPrioritySelection() {
+        val priorityViews = listOf(binding.pMost, binding.pMedium, binding.pLeast)
+        val priorities = listOf("1", "2", "3")
 
-        val title = binding.edtTitle.text.toString()
-        val subTitle = binding.edtSubtitle.text.toString()
-        val note = binding.edtNotes.text.toString()
-        val d = Date()
-        val notesDate: CharSequence = DateFormat.format("d MMMM yyyy", d.time)
+        priorityViews.forEachIndexed { index, textView ->
+            textView.setOnClickListener {
+                priority = priorities[index]
 
-        val data = Notes(
-            null,
-            title = title,
-            subTitle = subTitle,
-            notes = note,
-            date = notesDate as String,
-            priority
-        )
+                // Reset selection state for all views
+                priorityViews.forEach { it.setBackgroundResource(R.drawable.notselected) }
+                textView.setBackgroundResource(R.drawable.selectedbackground)
+            }
+        }
+    }
+
+
+    private fun createNotes() {
+        val title = binding.edtTitle.text.toString().trim()
+        val subTitle = binding.edtSubtitle.text.toString().trim()
+        val note = binding.edtNotes.text.toString().trim()
+        val notesDate: String = DateFormat.format("d MMMM yyyy", Date().time).toString()
+
+        if (title.isEmpty() || note.isEmpty()) {
+            binding.edtTitle.error = "Title is required"
+            binding.edtNotes.error = "Note cannot be empty"
+            return
+        }
+
+        val data = Notes(null, title, subTitle, note, notesDate, priority)
         viewModel.insertNotes(data)
-
-       // Navigation.findNavController(it!!).navigate(R.id.action_createNotesFragment_to_homeFragment)
-        findNavController().navigate(
-            CreateNotesFragmentDirections.actionCreateNotesFragmentToHomeFragment()
-        )
+        findNavController().navigate(R.id.action_createNotesFragment_to_homeFragment)
     }
 
     private fun toolBarSetUp() {
-        (activity as AppCompatActivity).setSupportActionBar(binding.toolbarCreateNotes)
-        if ((activity as AppCompatActivity).supportActionBar != null) {
-            (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_stack)
-            binding.toolbarCreateNotes.title = ""
+        (activity as? AppCompatActivity)?.apply {
+            setSupportActionBar(binding.toolbarCreateNotes)
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setHomeAsUpIndicator(R.drawable.ic_back_stack)
+                title = ""
+            }
         }
         binding.toolbarCreateNotes.setNavigationOnClickListener {
-            requireActivity().onBackPressed()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
-
 }

@@ -94,53 +94,83 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:isScrollContainer="true"
+                    android:paddingVertical="8dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:id="@+id/p_most"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:background="@drawable/most_shape"
-                        android:backgroundTint="#850505"
-                        android:textSize="10sp"
-                        android:text="Most Important"
-                        android:textColor="@color/white"/>
+                        android:padding="8dp"
+                        android:clickable="true"
+                        android:background="@drawable/notselected">
+
+                        <TextView
+                            android:id="@+id/p_mostT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:background="@drawable/most_shape"
+                            android:backgroundTint="#850505"
+                            android:textSize="10sp"
+                            android:text="Most Important"
+                            android:textColor="@color/white"
+                            android:clickable="true"/>
+
+                    </LinearLayout>
 
                     <View
-                        android:layout_width="8.dp"
+                        android:layout_width="8dp"
                         android:layout_height="wrap_content"/>
-
-                    <TextView
+                    <LinearLayout
                         android:id="@+id/p_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:background="@drawable/most_shape"
-                        android:backgroundTint="#054B85"
-                        android:textSize="10sp"
-                        android:text="Medium Important"
-                        android:textColor="@color/white"/>
+                        android:padding="8dp"
+                        android:clickable="true"
+                        android:background="@drawable/notselected">
+                        <TextView
+                            android:id="@+id/p_mediumT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:background="@drawable/most_shape"
+                            android:backgroundTint="#054B85"
+                            android:textSize="10sp"
+                            android:text="Medium Important"
+                            android:textColor="@color/white"
+                            android:clickable="true"/>
+                    </LinearLayout>
 
                     <View
-                        android:layout_width="8.dp"
+                        android:layout_width="8dp"
                         android:layout_height="wrap_content"/>
 
-                    <TextView
+                    <LinearLayout
                         android:id="@+id/p_least"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:background="@drawable/most_shape"
-                        android:backgroundTint="#058305"
-                        android:text="Least Important"
-                        android:textSize="10sp"
-                        android:textColor="@color/white"/>
+                        android:padding="8dp"
+                        android:clickable="true"
+                        android:background="@drawable/notselected">
 
+                        <TextView
+                            android:id="@+id/p_leastT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:background="@drawable/most_shape"
+                            android:backgroundTint="#058305"
+                            android:textSize="10sp"
+                            android:text="Least Important"
+                            android:textColor="@color/white"
+                            android:clickable="true"/>
+
+                    </LinearLayout>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -148,7 +178,6 @@
                     android:id="@+id/edt_notes"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="16dp"
                     android:background="@drawable/edit_text_shape"
                     android:fontFamily="@font/custom_regular"
                     android:gravity="start"
