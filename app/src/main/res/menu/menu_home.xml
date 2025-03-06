@@ -6,11 +6,6 @@
         android:id="@+id/mi_share"
         android:title="Share"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/mi_rate_us"
-        android:title="Rate us"
-        app:showAsAction="never" />
     <item
         android:id="@+id/mi_privacy"
         android:title="Privacy Policy"

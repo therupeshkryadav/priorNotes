@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/custom_bold"
-                android:text="My Notes"
+                android:text="Prior Notes"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
 
@@ -104,6 +104,7 @@
                 android:textColor="@color/white"/>
 
         </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_all_notes"

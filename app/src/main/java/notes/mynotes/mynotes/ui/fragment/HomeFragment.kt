@@ -1,6 +1,5 @@
 package notes.mynotes.mynotes.ui.fragment
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -28,8 +27,11 @@ class HomeFragment : Fragment() {
         //toolbar setup
         toolBarSetUp()
 
+        // if notes are not in the list then show the emptyLayout
+
         val gridLayout = GridLayoutManager(requireContext(), 1)
         binding.rcvAllNotes.layoutManager = gridLayout
+
 
         viewModel.getAllNotes().observe(viewLifecycleOwner) { notesList ->
             binding.rcvAllNotes.adapter = NotesAdapter(requireContext(), notesList)
@@ -85,25 +87,36 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.mi_share -> {
-
-                true
+                // Share app link
+                val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_SUBJECT, "Check out this amazing app Prior Notes!")
+                    putExtra(Intent.EXTRA_TEXT, "Hey! Check out this awesome app Prior Notes: [https://drive.google.com/file/d/1I-vdj_Mw6qm4w9mj_FWWDehkOcwdFsYr/view?usp=sharing]")
+                }
+                startActivity(Intent.createChooser(shareIntent, "Share via"))
+                return true
             }
-            R.id.mi_rate_us -> {
 
-                true
-            }
             R.id.mi_privacy -> {
+                // Navigate to Privacy Policy Fragment
                 Navigation.findNavController(binding.root)
                     .navigate(R.id.action_homeFragment_to_privacyPolicyFragment)
-                true
+                return true
             }
-            R.id.mi_feedback -> {
 
-                true
+            R.id.mi_feedback -> {
+                // Send feedback via email
+                val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+                    data = Uri.parse("mailto:rupesh.official484@gmail.com")
+                    putExtra(Intent.EXTRA_SUBJECT, "Prior Notes App Feedback")
+                    putExtra(Intent.EXTRA_TEXT, "Hello Rupesh, I would like to share some feedback about your app...")
+                }
+                startActivity(Intent.createChooser(emailIntent, "Send Feedback"))
+                return true
             }
         }
-
-        return true
+        return super.onOptionsItemSelected(item)
     }
+
 
 }
